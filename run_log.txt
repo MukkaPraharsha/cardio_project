@@ -1,0 +1,137 @@
+Shape: (70000, 13)
+   id    age  gender  height  weight  ...  gluc  smoke  alco  active  cardio
+0   0  18393       2     168    62.0  ...     1      0     0       1       0
+1   1  20228       1     156    85.0  ...     1      0     0       1       1
+2   2  18857       1     165    64.0  ...     1      0     0       0       1
+3   3  17623       2     169    82.0  ...     1      0     0       1       1
+4   4  17474       1     156    56.0  ...     1      0     0       0       0
+
+[5 rows x 13 columns]
+<class 'pandas.DataFrame'>
+RangeIndex: 70000 entries, 0 to 69999
+Data columns (total 13 columns):
+ #   Column       Non-Null Count  Dtype  
+---  ------       --------------  -----  
+ 0   id           70000 non-null  int64  
+ 1   age          70000 non-null  int64  
+ 2   gender       70000 non-null  int64  
+ 3   height       70000 non-null  int64  
+ 4   weight       70000 non-null  float64
+ 5   ap_hi        70000 non-null  int64  
+ 6   ap_lo        70000 non-null  int64  
+ 7   cholesterol  70000 non-null  int64  
+ 8   gluc         70000 non-null  int64  
+ 9   smoke        70000 non-null  int64  
+ 10  alco         70000 non-null  int64  
+ 11  active       70000 non-null  int64  
+ 12  cardio       70000 non-null  int64  
+dtypes: float64(1), int64(12)
+memory usage: 6.9 MB
+               count          mean           std  ...      50%       75%      max
+id           70000.0  49972.419900  28851.302323  ...  50001.5  74889.25  99999.0
+age          70000.0  19468.865814   2467.251667  ...  19703.0  21327.00  23713.0
+gender       70000.0      1.349571      0.476838  ...      1.0      2.00      2.0
+height       70000.0    164.359229      8.210126  ...    165.0    170.00    250.0
+weight       70000.0     74.205690     14.395757  ...     72.0     82.00    200.0
+ap_hi        70000.0    128.817286    154.011419  ...    120.0    140.00  16020.0
+ap_lo        70000.0     96.630414    188.472530  ...     80.0     90.00  11000.0
+cholesterol  70000.0      1.366871      0.680250  ...      1.0      2.00      3.0
+gluc         70000.0      1.226457      0.572270  ...      1.0      1.00      3.0
+smoke        70000.0      0.088129      0.283484  ...      0.0      0.00      1.0
+alco         70000.0      0.053771      0.225568  ...      0.0      0.00      1.0
+active       70000.0      0.803729      0.397179  ...      1.0      1.00      1.0
+cardio       70000.0      0.499700      0.500003  ...      0.0      1.00      1.0
+
+[13 rows x 8 columns]
+Missing values:
+ id             0
+age            0
+gender         0
+height         0
+weight         0
+ap_hi          0
+ap_lo          0
+cholesterol    0
+gluc           0
+smoke          0
+alco           0
+active         0
+cardio         0
+dtype: int64
+Duplicates (excluding id): 24
+Rows: raw=70000, after dedupe=69976, after outlier removal=68591
+Final rows: 68566
+age_group
+<=40     0.225
+41-45    0.329
+46-50    0.420
+51-55    0.479
+56-60    0.563
+60+      0.689
+Name: cardio, dtype: float64
+bp_cat
+Elevated        0.379
+Hypertension    0.780
+Normal          0.221
+Name: cardio, dtype: float64
+bmi_class
+Under        0.270
+Normal       0.398
+Over         0.506
+Obese I      0.599
+Obese II+    0.678
+Name: cardio, dtype: float64
+cardio            1.000
+ap_hi             0.428
+map               0.409
+ap_lo             0.340
+pulse_pressure    0.337
+age               0.239
+cholesterol       0.221
+bmi               0.191
+weight            0.181
+gluc              0.090
+gender            0.007
+alco             -0.008
+height           -0.012
+smoke            -0.016
+active           -0.038
+Name: cardio, dtype: float64
+Train/test: (54852, 12) (13714, 12)
+Logistic Regression  acc=0.7285 auc=0.7922 (1s)
+KNN                  acc=0.7222 auc=0.7847 (28s)
+SVM (RBF)            acc=0.7332 auc=0.7910 (44s)
+Decision Tree        acc=0.7307 auc=0.7969 (1s)
+Random Forest        acc=0.7339 auc=0.8030 (54s)
+                 Model  CV_Accuracy  Test_Accuracy  Precision  Recall      F1  ROC_AUC  Seconds
+0        Random Forest       0.7350         0.7339     0.7557  0.6830  0.7175   0.8030  54.1230
+1            SVM (RBF)       0.7349         0.7332     0.7561  0.6800  0.7161   0.7910  44.0789
+2        Decision Tree       0.7306         0.7307     0.7549  0.6747  0.7126   0.7969   0.6204
+3  Logistic Regression       0.7273         0.7285     0.7498  0.6771  0.7116   0.7922   0.5414
+4                  KNN       0.7237         0.7222     0.7347  0.6862  0.7096   0.7847  28.0966
+Best RF params: {'n_estimators': 200, 'min_samples_leaf': 20, 'max_features': 'sqrt', 'max_depth': 10} CV acc: 0.734
+Tuned RF test acc=0.7334  AUC=0.8028
+FINAL MODEL: Random Forest 0.7339
+              precision    recall  f1-score   support
+
+  No disease       0.72      0.78      0.75      6929
+     Disease       0.76      0.68      0.72      6785
+
+    accuracy                           0.73     13714
+   macro avg       0.74      0.73      0.73     13714
+weighted avg       0.74      0.73      0.73     13714
+
+ap_hi          0.4536
+ap_lo          0.2072
+age            0.1246
+cholesterol    0.0916
+bmi            0.0498
+weight         0.0331
+height         0.0150
+gluc           0.0105
+active         0.0070
+smoke          0.0030
+gender         0.0030
+alco           0.0017
+dtype: float64
+Saved model.

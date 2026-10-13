@@ -1,0 +1,25 @@
+{
+  "final_model": "Random Forest",
+  "test_accuracy": 0.7339,
+  "rf_best_params": {
+    "n_estimators": 200,
+    "min_samples_leaf": 20,
+    "max_features": "sqrt",
+    "max_depth": 10
+  },
+  "n_rows_clean": 68566,
+  "features": [
+    "age",
+    "gender",
+    "height",
+    "weight",
+    "ap_hi",
+    "ap_lo",
+    "cholesterol",
+    "gluc",
+    "smoke",
+    "alco",
+    "active",
+    "bmi"
+  ]
+}
